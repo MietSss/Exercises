@@ -8,30 +8,30 @@ import java.util.*;
 public class AnalyzeScores {
     public static void main(String[] args) {
 
-        int lengthArray = readLengthArray();
-        int [] scores = new int[lengthArray];
+        int lengthArray = readLengthArray();                                        // input amount of scores
+        int [] scores = new int[lengthArray];                                       // making the array
        // scores[i] = inputAndSumInput(lengthArray);
-        int sumScores = inputAndSumInput(lengthArray, scores);
-        int average = sumScores/lengthArray;
-        printAverage(average, lengthArray,scores);
+        int sumScores = inputAndSumInput(lengthArray, scores);                      // inout several scores and calculate sum
+        int average = sumScores/lengthArray;                                        // calculate average
+        printAverage(average, lengthArray,scores);                                  // looping the scores and marking them as abow, below or same as average
 
 
     }
 
-    public static int readLengthArray() {
+    public static int readLengthArray() {                                           // ask input of amount of scores
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Give the number of scores you want to add:");
         int length = keyboard.nextInt();
         return length;
     }
 
-    public static int inputAndSumInput(int lengthArray, int[] scores) {
+    public static int inputAndSumInput(int lengthArray, int[] scores) {                 // input for each score and calculate the sum of the scores
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter all the scores"); //enter scores
         int sum = 0;
         for (int eachScore: scores) {
             eachScore = keyboard.nextInt();
-            while (eachScore > 100 || eachScore< 0) {
+            while (eachScore > 100 || eachScore< 0) {                                   // validate input
                 System.out.println("Wrong input");
                 System.out.println("Give me you score");
                 eachScore = keyboard.nextInt();
@@ -41,7 +41,7 @@ public class AnalyzeScores {
         }
         return sum;
     }
-    private static void printAverage(int average, int lengthArray, int[] scores) {
+    private static void printAverage(int average, int lengthArray, int[] scores) {              //determine if score is below, aboce or same as average
 
 
         int belowAverage=0;
@@ -60,7 +60,7 @@ public class AnalyzeScores {
             else
             sameAsAverage++;
         }
-        System.out.println("The average score is "+ average);
+        System.out.println("The average score is "+ average);                               // print the result
         System.out.println(belowAverage+" scores are below average");
         System.out.println(sameAsAverage+" scores are the same as the average");
         System.out.println(aboveAverage+" scores are above average.");
