@@ -8,12 +8,12 @@ import java.util.*;
 public class AnalyzeScores {
     public static void main(String[] args) {
 
-        int lengthArray = readLengthArray();                                        // input amount of scores
-        int [] scores = new int[lengthArray];                                       // making the array
+
+        int [] scores = new int[readLengthArray()];                                       // making the array
        // scores[i] = inputAndSumInput(lengthArray);
-        int sumScores = inputAndSumInput(lengthArray, scores);                      // inout several scores and calculate sum
-        int average = sumScores/lengthArray;                                        // calculate average
-        printAverage(average, lengthArray,scores);                                  // looping the scores and marking them as abow, below or same as average
+        int sumScores = inputAndSumInput(scores);                      // inout several scores and calculate sum
+        int average = sumScores/scores.length;                                        // calculate average
+        printAverage(average,scores);                                  // looping the scores and marking them as abow, below or same as average
 
 
     }
@@ -25,23 +25,23 @@ public class AnalyzeScores {
         return length;
     }
 
-    public static int inputAndSumInput(int lengthArray, int[] scores) {                 // input for each score and calculate the sum of the scores
+    public static int inputAndSumInput(int[] scores) {                 // input for each score and calculate the sum of the scores
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter all the scores"); //enter scores
         int sum = 0;
-        for (int eachScore: scores) {
-            eachScore = keyboard.nextInt();
-            while (eachScore > 100 || eachScore< 0) {                                   // validate input
+        for (int i = 0; i< scores.length; i++) {
+            scores[i] = keyboard.nextInt();
+            while (scores[i] > 100 || scores[i]< 0) {                                   // validate input
                 System.out.println("Wrong input");
                 System.out.println("Give me you score");
-                eachScore = keyboard.nextInt();
+                scores[i] = keyboard.nextInt();
             }
-            sum += eachScore;
+            sum += scores[i];
 
         }
         return sum;
     }
-    private static void printAverage(int average, int lengthArray, int[] scores) {              //determine if score is below, aboce or same as average
+    private static void printAverage(int average, int[] scores) {              //determine if score is below, aboce or same as average
 
 
         int belowAverage=0;
@@ -54,11 +54,11 @@ public class AnalyzeScores {
             if(eachScore<average){
             belowAverage++;
             }
-            if(eachScore>average){
+            else if(eachScore>average){
             aboveAverage++;
             }
-            else
-            sameAsAverage++;
+            else{
+            sameAsAverage++;}
         }
         System.out.println("The average score is "+ average);                               // print the result
         System.out.println(belowAverage+" scores are below average");
